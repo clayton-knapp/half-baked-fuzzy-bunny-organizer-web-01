@@ -8,6 +8,8 @@ import {
 const form = document.querySelector('.bunny-form');
 const logoutButton = document.getElementById('logout');
 
+const familyDropdownEl = document.querySelector('select');
+
 form.addEventListener('submit', async(e) => {
     // prevent default
     e.preventDefault();
@@ -22,7 +24,7 @@ form.addEventListener('submit', async(e) => {
         name: bunnyName,
         family_id: familyId
     };
-    
+
     await createBunny(bunny);
 
     form.reset();
@@ -31,7 +33,8 @@ form.addEventListener('submit', async(e) => {
 window.addEventListener('load', async() => {
     // let's dynamically fill in the families dropdown from supabase
     // grab the select HTML element from the DOM
-    const familyDropdownEl = document.querySelector('select');
+    // const familyDropdownEl = document.querySelector('select');
+    // DOES THIS HAVE TO BE IN THE EVENT LISTENER? OR CAN WE GRAB THE DOM ELEMENT IN GLOBAL SCOPE?
 
     // go get the families from supabase
     const families = await getFamilies();
@@ -40,6 +43,7 @@ window.addEventListener('load', async() => {
     for (let family of families) {
         // create an option tag
         const familyNameOption = document.createElement('option');
+        console.log(family);
         
         // set the option's value and text content
         familyNameOption.textContent = family.name;
