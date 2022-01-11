@@ -42,11 +42,12 @@ async function displayFamilies() {
             const bunnyEl = renderBunny(bunny);
             
             // add an event listener to the bunny el. On click, delete the bunny, then refetch and redisplay all families.
-            bunnyEl.addEventListener('click', async() => {
-                await deleteBunny(bunny.id);
+            // bunnyEl.addEventListener('click', async() => {
+            //     await deleteBunny(bunny.id);
 
-                await displayFamilies();
-            });
+            //     await displayFamilies();
+
+            // });
     
     
             // append this bunnyEl to the bunniesEl

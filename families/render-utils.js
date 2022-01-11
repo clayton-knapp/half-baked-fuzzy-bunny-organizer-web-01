@@ -3,5 +3,12 @@ export function renderBunny(bunny) {
     bunnyEl.classList.add('bunny');
     bunnyEl.textContent = bunny.name;
 
-    return bunnyEl;
+
+    //STRETCH DETAIL PAGE STUFF
+    const anchorEl = document.createElement('a');
+    anchorEl.href = `../detail/?id=${bunny.id}`;
+
+    anchorEl.append(bunnyEl);
+
+    return anchorEl;
 }

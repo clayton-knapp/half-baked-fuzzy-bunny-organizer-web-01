@@ -1,5 +1,6 @@
 import { 
-    createBunny, 
+    updateBunny,
+    getBunny,
     getFamilies, 
     checkAuth, 
     logout 
@@ -7,8 +8,13 @@ import {
 
 const form = document.querySelector('.bunny-form');
 const logoutButton = document.getElementById('logout');
-
 const familyDropdownEl = document.querySelector('select');
+const bunnyNameDisplay = document.querySelector('#bunny-name-display');
+const familyNameDisplay = document.querySelector('#family-name-display');
+
+//     - use URLSearchParams to grab the ID of the bunny object from the URL. hint: new URLSearchParams(window.location.search), then use .get('id')
+const params = new URLSearchParams(window.location.search);
+const bunnyId = params.get('id');
 
 form.addEventListener('submit', async(e) => {
     // prevent default
@@ -19,18 +25,26 @@ form.addEventListener('submit', async(e) => {
     const bunnyName = data.get('bunny-name');
     const familyId = data.get('family-id');
 
-    // use createBunny to create a bunny with this name and family id
-    const bunny = { 
-        name: bunnyName,
-        family_id: familyId
-    };
-
-    await createBunny(bunny);
+    // use updateBunny to update a bunny with this name and family id
+    await updateBunny(bunnyName, familyId, bunnyId);
 
     form.reset();
+
+    //reloads the current page
+    location.reload();
 });
 
 window.addEventListener('load', async() => {
+    // need to get the bunnys name and current family matching the ID from the URL - need to make a getBunny function
+    const currentBunny = await getBunny(bunnyId);
+
+    // set the text content of the name span to the bunny object name prop
+    bunnyNameDisplay.textContent = currentBunny.name;
+
+    // object returns only family id, not name, so must query the famlies table, and match the id with if statement?
+
+
+
     // let's dynamically fill in the families dropdown from supabase
     // grab the select HTML element from the DOM
     // const familyDropdownEl = document.querySelector('select');
@@ -50,7 +64,13 @@ window.addEventListener('load', async() => {
         
         // and append the option to the select
         familyDropdownEl.append(familyNameOption);
+
+        // code to fill in family name matching family id of current bunny
+        if (currentBunny.family_id === family.id) {
+            familyNameDisplay.textContent = family.name;
+        }
     }
+
 });
 
 

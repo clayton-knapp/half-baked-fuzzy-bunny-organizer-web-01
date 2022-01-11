@@ -48,7 +48,27 @@ export async function addFamily(name) {
     return checkError(response);
 }
 
+export async function updateBunny(bunnyName, familyId, bunnyId) {
+    const response = await client
+        .from('fuzzy_bunnies')
+        .update({ 
+            name: bunnyName,
+            family_id: familyId
+        })
+        .match({ id: bunnyId });
+    
+    return checkError(response);
+}
 
+export async function getBunny(id) {
+    const response = await client
+        .from('fuzzy_bunnies')
+        .select()
+        .match({ id: id })
+        .single();
+    
+    return checkError(response);
+}
 
 export async function checkAuth() {
     const user = await getUser();
