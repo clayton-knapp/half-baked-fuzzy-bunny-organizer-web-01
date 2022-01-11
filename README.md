@@ -45,3 +45,44 @@ https://alchemycodelab.github.io/web-01-fuzzy-bunny-organizer/
 | ASYNC: `getFamilies()` : get all bunnies in supabase. (These families are the same for everybody in the cohort and do not 'belong' to any particular user. Your bunnies will show up for everybody) |1|
 | ASYNC: `createBunny(bunny)` : create bunny in supabase and attach it to a family |1|
 | ASYNC: `deleteBunny(id)` : delete a bunny in supabase |1|
+
+
+
+
+Add a page that lets you create a new loving family
+
+HTML Setup:
+Add a Family Page
+
+- Form
+    -Family name input box
+    -Submit button
+
+EVENTS
+Form Submit
+    - Add/insert/create a new family in the family table
+    - re-direct to add bunny or see all families
+    
+
+STRETCH 2
+On click, don't delete the bunny--go to the bunny's "detail page". The detail page will have an interface that lets the user update the bunny. This includes allowing the user to change which loving family the bunny belongs to.
+
+EVENT IN FAMILY DISPLAY
+on click of bunny: 
+redirect to detail page with url with that bunny's id
+
+HTML
+- header for bunny names detail page
+- p/span for current family
+- form: update bunny name input
+    - update bunny family
+
+EVENTS
+On Load
+    - grabs the id of that bunny from the URL (included it in updateBunny func)
+    - display current bunny name/family
+    - dynamically generate dropdown of families
+
+On submit of form
+    - update bunny name and or/family, matching with id
+    - reload detail page

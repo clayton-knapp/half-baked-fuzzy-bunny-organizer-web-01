@@ -14,5 +14,7 @@ global.sessionStorage = window.sessionStorage;
 global.URLSearchParams = window.URLSearchParams;
 global.URL = window.URL;
 
+window.supabase = { createClient: () => {} }
+global.supabase = window.supabase
 require = require('esm')(module);
 module.exports = require('./tests.js');

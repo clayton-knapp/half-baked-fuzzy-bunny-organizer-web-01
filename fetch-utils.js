@@ -9,12 +9,22 @@ export async function getUser() {
 
 export async function getFamilies() {
     // fetch all families and their bunnies
+    const response = await client
+        .from('loving_families')
+        // .select();
+        .select(`*, fuzzy_bunnies (*)`);
+
 
     return checkError(response);    
 }
 
 export async function deleteBunny(id) {
     // delete a single bunny using the id argument
+    const response = await client
+        .from('fuzzy_bunnies')
+        .delete()
+        .match({ id: id });
+
 
     return checkError(response);    
 }
@@ -22,11 +32,43 @@ export async function deleteBunny(id) {
 
 export async function createBunny(bunny) {
     // create a bunny using the bunny argument
+    const response = await client
+        .from('fuzzy_bunnies')
+        .insert(bunny);
+
 
     return checkError(response);    
 }
 
+export async function addFamily(name) {
+    const response = await client
+        .from('loving_families')
+        .insert({ name: name });
 
+    return checkError(response);
+}
+
+export async function updateBunny(bunnyName, familyId, bunnyId) {
+    const response = await client
+        .from('fuzzy_bunnies')
+        .update({ 
+            name: bunnyName,
+            family_id: familyId
+        })
+        .match({ id: bunnyId });
+    
+    return checkError(response);
+}
+
+export async function getBunny(id) {
+    const response = await client
+        .from('fuzzy_bunnies')
+        .select()
+        .match({ id: id })
+        .single();
+    
+    return checkError(response);
+}
 
 export async function checkAuth() {
     const user = await getUser();

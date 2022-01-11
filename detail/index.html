@@ -23,25 +23,29 @@
     </header>    
     <button id="logout">Logout</button>
     <main class="create-main">
-        <h2>Add a new bunny</h2>
+        <h2><span id=bunny-name-display></span>'s Detail Page</h2>
+        <h3>Loving Family: <span id=family-name-display></span></h3>
+        <h2>Update name and family:</h2>
         <form class="bunny-form">
             <label>
-                Bunny's name
+                Bunny's new name
                 <input name="bunny-name" />
             </label>
             <label>
-                Belongs to
+                Bunny's new family
                 <select name="family-id">
 
                 </select>    
             </label>
             <button>Submit</button>
+            <br>
         </form>
+        <button id=bunny-delete-button>Delete This Bunny</button>
     </main>
     <footer>
         <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
     </footer>
-    <script type="module" src="./create.js"></script>
+    <script type="module" src="./detail.js"></script>
 </body>
 
 </html>
