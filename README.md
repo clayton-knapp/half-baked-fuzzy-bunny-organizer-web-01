@@ -45,3 +45,21 @@ https://alchemycodelab.github.io/web-01-fuzzy-bunny-organizer/
 | ASYNC: `getFamilies()` : get all bunnies in supabase. (These families are the same for everybody in the cohort and do not 'belong' to any particular user. Your bunnies will show up for everybody) |1|
 | ASYNC: `createBunny(bunny)` : create bunny in supabase and attach it to a family |1|
 | ASYNC: `deleteBunny(id)` : delete a bunny in supabase |1|
+
+
+
+
+Add a page that lets you create a new loving family
+
+HTML Setup:
+Add a Family Page
+
+- Form
+    -Family name input box
+    -Submit button
+
+EVENTS
+Form Submit
+    - Add/insert/create a new family in the family table
+    - re-direct to add bunny or see all families
+    

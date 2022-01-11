@@ -40,6 +40,14 @@ export async function createBunny(bunny) {
     return checkError(response);    
 }
 
+export async function addFamily(name) {
+    const response = await client
+        .from('loving_families')
+        .insert({ name: name });
+
+    return checkError(response);
+}
+
 
 
 export async function checkAuth() {
