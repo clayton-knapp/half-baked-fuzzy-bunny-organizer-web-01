@@ -186,3 +186,6 @@ footer {
     padding-top: 40px;
 }
 
+#bunny-delete-button {
+    background-color: red;
+}

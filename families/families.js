@@ -41,6 +41,8 @@ async function displayFamilies() {
             // make an element with the css class 'bunny', and put the bunny's name in the text content
             const bunnyEl = renderBunny(bunny);
             
+
+            //MOVED DELETE FUNCTION TO BUTTON ON DETAIL PAGE
             // add an event listener to the bunny el. On click, delete the bunny, then refetch and redisplay all families.
             // bunnyEl.addEventListener('click', async() => {
             //     await deleteBunny(bunny.id);

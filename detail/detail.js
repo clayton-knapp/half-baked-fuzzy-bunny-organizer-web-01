@@ -1,4 +1,5 @@
 import { 
+    deleteBunny,
     updateBunny,
     getBunny,
     getFamilies, 
@@ -11,6 +12,7 @@ const logoutButton = document.getElementById('logout');
 const familyDropdownEl = document.querySelector('select');
 const bunnyNameDisplay = document.querySelector('#bunny-name-display');
 const familyNameDisplay = document.querySelector('#family-name-display');
+const bunnyDeleteButton = document.querySelector('#bunny-delete-button');
 
 //     - use URLSearchParams to grab the ID of the bunny object from the URL. hint: new URLSearchParams(window.location.search), then use .get('id')
 const params = new URLSearchParams(window.location.search);
@@ -70,7 +72,12 @@ window.addEventListener('load', async() => {
             familyNameDisplay.textContent = family.name;
         }
     }
+});
 
+bunnyDeleteButton.addEventListener('click', async() => {
+    await deleteBunny(bunnyId);
+
+    location.replace('../families');
 });
 
 
